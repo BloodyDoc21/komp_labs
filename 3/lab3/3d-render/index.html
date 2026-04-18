@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+
+<title>3D Software Renderer</title>
+
+</head>
+<body>
+<link rel="stylesheet" href="style.css">
+<div class="info" id="info">FPS: 0 | Triangles: 0</div>
+<canvas id="canvas" width="800" height="600"></canvas>
+<div class="controls">
+    <button id="rotateBtn">Вращать</button>
+    <button id="resetBtn">Сброс</button>
+
+    <select id="projectionSelect">
+        <option value="perspective">Перспектива</option>
+        <option value="orthographic">Ортографическая</option>
+    </select>
+</div>
+<script src="math/vector3.js"></script>
+<script src="math/matrix4.js"></script>
+
+<script src="renderer/wireframe.js"></script>
+<script src="examples/cube.js"></script>
+<script src="renderer/zbuffer.js"></script>
+<script src="renderer/solid.js"></script>
+<script src="renderer/lighting.js"></script>
+<script src="renderer/shaded.js"></script>
+<script src="script.js"></script>
+</html>
