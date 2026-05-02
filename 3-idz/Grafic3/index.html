@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Software Renderer</title>
+    <style>
+    body {
+        margin: 0;
+        padding: 16px;
+        font-family: Arial, sans-serif;
+        background: #0f172a; /* темно-синий */
+        color: #e5e7eb;
+    }
+
+    canvas {
+        display: block;
+        margin: 20px auto;
+        background: #020617;
+        border: 1px solid #334155;
+    }
+
+    .controls {
+        max-width: 900px;
+        margin: 20px auto;
+        padding: 12px;
+        background: #111827;
+        border: 1px solid #1f2937;
+    }
+
+    .controls > div {
+        margin-bottom: 10px;
+    }
+
+    .info {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        background: #020617;
+        padding: 6px 10px;
+        font-size: 11px;
+        border: 1px solid #334155;
+    }
+
+    button {
+        padding: 6px 10px;
+        margin: 3px;
+        border: 1px solid #374151;
+        background: transparent;
+        color: #e5e7eb;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #1f2937;
+    }
+
+    .active {
+        background: #2563eb;
+        border-color: #2563eb;
+        color: white;
+    }
+
+    select {
+        background: transparent;
+        color: #e5e7eb;
+        border: 1px solid #374151;
+        padding: 4px;
+    }
+
+    input[type="range"] {
+        width: 120px;
+        accent-color: #2563eb;
+    }
+
+    label {
+        margin-right: 10px;
+        font-size: 13px;
+    }
+</style>
+</head>
+<body>
+    <div class="info">
+        FPS: <span id="fps">0</span> | 
+        Треугольников: <span id="triCount">0</span> | 
+        Режим: <span id="modeName">Shaded</span>
+    </div>
+    <canvas id="canvas" width="800" height="600"></canvas>
+    <div class="controls">
+        <div>
+            <button id="modeWireframe">Каркас</button>
+            <button id="modeSolid">Заливка</button>
+            <button id="modeShaded" class="active">Освещение</button>
+        </div>
+        <div>
+            <button id="rotateBtn">▶ Вращать</button>
+            <button id="resetBtn">⟳ Сброс</button>
+        </div>
+        <div>
+            <label>X: <input type="range" id="angleX" min="-180" max="180" value="30"> <span id="angleXVal">30</span></label>
+            <label>Y: <input type="range" id="angleY" min="-180" max="180" value="30"> <span id="angleYVal">30</span></label>
+            <label>Z: <input type="range" id="angleZ" min="-180" max="180" value="0"> <span id="angleZVal">0</span></label>
+        </div>
+        <div>
+            <label>Проекция:
+                <select id="projectionSelect">
+                    <option value="perspective">Перспективная</option>
+                    <option value="orthographic">Ортографическая</option>
+                </select>
+            </label>
+            <label>Модель:
+                <select id="modelSelect">
+                    <option value="cube">Куб</option>
+                    <option value="pyramid">Пирамида</option>
+                </select>
+            </label>
+            <label>
+                <input type="checkbox" id="showAxes"> Показать оси
+            </label>
+        </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>

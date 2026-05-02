@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Тестирование математической библиотеки</title>
+    <style>
+        body {
+            font-family: monospace;
+            background: #1a1a1a;
+            color: #0f0;
+            padding: 20px;
+        }
+        pre {
+            background: #000;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Тестирование математической библиотеки</h1>
+    <pre id="output"></pre>
+
+    <script src="../js/math/vector3.js"></script>
+    <script src="../js/math/matrix4.js"></script>
+    <script>
+        const output = document.getElementById('output');
+        let log = '';
+
+        function println(msg) {
+            log += msg + '\n';
+        }
+
+        println('ТЕСТИРОВАНИЕ МАТЕМАТИЧЕСКОЙ БИБЛИОТЕКИ\n');
+
+        println('Тест векторов');
+        const v1 = new Vector3(1, 2, 3);
+        const v2 = new Vector3(4, 5, 6);
+        println('v1 = ' + v1.toString());
+        println('v2 = ' + v2.toString());
+        println('Сложение: ' + v1.add(v2).toString());
+        println('Вычитание: ' + v1.subtract(v2).toString());
+        println('Умножение на 2: ' + v1.multiplyScalar(2).toString());
+        println('Длина v1: ' + v1.length());
+        println('Скалярное произведение: ' + v1.dot(v2));
+        println('Векторное произведение: ' + v1.cross(v2).toString());
+
+        println('\nТест матриц');
+        const rotMatrix = Matrix4.rotationY(Math.PI / 4);
+        const transMatrix = Matrix4.translation(10, 0, 0);
+        println('Матрица поворота Y(45°) создана');
+        println('Матрица перемещения (10,0,0) создана');
+
+        const combined = rotMatrix.multiply(transMatrix);
+        println('Матрицы перемножены');
+
+        const point = new Vector3(1, 0, 0);
+        const transformed = combined.multiplyVector(point);
+        println('Точка (1,0,0) после трансформации: ' + 
+            transformed.x.toFixed(2) + ', ' + 
+            transformed.y.toFixed(2) + ', ' + 
+            transformed.z.toFixed(2) + ', w=' + transformed.w.toFixed(2));
+
+        println('\nПроверка корректности');
+        const expectedX = Math.cos(Math.PI/4) * 1 + 10;
+        const expectedZ = -Math.sin(Math.PI/4) * 1;
+        println('Ожидаемый результат после поворота Y и перемещения:');
+        println('x = ' + expectedX.toFixed(2) + ', z = ' + expectedZ.toFixed(2));
+        println('Полученный результат соответствует ожидаемому?', 
+            Math.abs(transformed.x - expectedX) < 0.01 ? 'ДА' : 'НЕТ');
+
+        output.textContent = log;
+    </script>
+</body>
+</html>
