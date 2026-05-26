@@ -1,0 +1,3 @@
+C:/Users/BloodyDoc21/dev/kompgraphik/4/medium/build/CMakeFiles/OpenGLLab4.dir
+C:/Users/BloodyDoc21/dev/kompgraphik/4/medium/build/CMakeFiles/edit_cache.dir
+C:/Users/BloodyDoc21/dev/kompgraphik/4/medium/build/CMakeFiles/rebuild_cache.dir
